@@ -12,13 +12,19 @@
     
     <p>Mot à deviner: <span id="motCache">-</span></p>
     <img id="pendu" src="Images/pendu7.png" alt="Pendu">
-    <p>Nombre d'erreurs autorisées: <span id="erreursAutorises">7</span></p>
       
     <form id="formulaire">
         <input type="text" id="lettre" maxlength="1" required>
         <button type="submit">Deviner</button>
     </form>
-    
+   
+      <section id="modal" class="modal" style="display: none;">
+        <h2>JEU TERMINE</h2>
+        <p id="choix"></p>
+        <button id="changerBtn">Nouveau mot</button>
+        <button id="arretBtn">Arrêter</button>
+      </section>
+       
     <script src="Script.js"></script>
 </body>
 </html>

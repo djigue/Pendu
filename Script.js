@@ -6,13 +6,18 @@ let motCache = '-'.repeat(motADeviner.length);
 let erreurAutorises = 7;
 let lettreDevinees = [];
 
+const modal = document.getElementById('modal');
+const choix = document.getElementById('choix');
+const changerMot = document.getElementById('changerBtn');
+const arret = document.getElementById('arretBtn');
 
-document.getElementById('motCache').innerText = motCache;
-        
+document.getElementById('motCache').innerText = motCache;       
 document.getElementById('formulaire').addEventListener('submit', function (event) {
     event.preventDefault(); 
     jouer();
 });
+
+
 
 function jouer() {
             
@@ -45,16 +50,19 @@ function jouer() {
     }
 
     document.getElementById('motCache').innerText = motCache; 
-    document.getElementById('erreursAutorises').innerText = erreurAutorises;
 
     if (motCache === motADeviner) {
-        alert('Félicitations, vous avez gagné !');
+        afficheModal('Félicitations, vous avez gagné !');
         return;
     }
            
     if (erreurAutorises === 0) {
-        alert(`Dommage, vous avez perdu ! \nLe mot était : ${motADeviner}`);
+        afficheModal(`Dommage, vous avez perdu ! \nLe mot était : ${motADeviner}`);
         return;
     }
 }
-   
+
+function afficheModal (message) {
+    choix.innerText = message;
+    modal.style.display = 'block';
+}
