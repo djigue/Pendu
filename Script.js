@@ -52,7 +52,7 @@ function jouer() {
     document.getElementById('motCache').innerText = motCache; 
 
     if (motCache === motADeviner) {
-        afficheModal('Félicitations, vous avez gagné !');
+        afficheModal(`Félicitations, vous avez gagné ! \nIl vous restait ${erreurAutorises} chances.`);
         return;
     }
            
@@ -66,3 +66,14 @@ function afficheModal (message) {
     choix.innerText = message;
     modal.style.display = 'block';
 }
+
+changerMot.addEventListener('click', function() {
+   
+    motADeviner = wordsArray[Math.floor(Math.random() * wordsArray.length)];
+    motCache = '-'.repeat(motADeviner.length);
+    erreurAutorises = 7;
+    lettreDevinees = [];
+    document.getElementById('motCache').innerText = motCache;
+    document.getElementById('pendu').src = `Images/pendu7.png`;
+    modal.style.display = 'none';
+});
