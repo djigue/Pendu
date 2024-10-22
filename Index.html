@@ -1,11 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pendu</title>
+    <title>Jeu du Pendu</title>
 </head>
+
 <body>
+
+    <h1>Jeu du Pendu</h1>
+    
+    <p>Mot à deviner: <span id="motCache">-</span></p>
+    <img id="pendu" src="Images/pendu7.png" alt="Pendu">
+    <p>Nombre d'erreurs autorisées: <span id="erreursAutorises">7</span></p>
+      
+    <form id="formulaire">
+        <input type="text" id="lettre" maxlength="1" required>
+        <button type="submit">Deviner</button>
+    </form>
+    
     <script src="Script.js"></script>
 </body>
 </html>
