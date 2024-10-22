@@ -3,3 +3,67 @@ const wordsList = 'abandonner,abattre,abri,absence,absolu,absolument,accent,acce
 const wordsArray = wordsList.split(',');
 let motADeviner = wordsArray[Math.floor(Math.random()*wordsArray.length)];
 console.log(motADeviner);
+let motCache ='-'.repeat(motADeviner.length);
+let erreurAutorises = 7;
+let lettreDevinees = [];
+
+
+
+// function motAJour () {
+//     let mot ='';
+//     for (let i = 0; i < motADeviner.length; i++) {
+//         if (lettre.includes(motADeviner[i])) {
+//             mot += motADeviner[i];
+//         }else {
+//             mot += "-";
+//         }
+//     }
+//     console.log(mot)
+// }
+
+
+ function jouer () {
+
+     while(erreurAutorises > 0 && motCache !== motADeviner) {
+
+        let lettre = window.prompt('veuillez rentrer une lettre').toLowerCase();
+        
+         if (lettre.length !== 1 || !/[a-zA-Z]/.test(lettre)) {
+            alert('S’il vous plaît, entrez une seule lettre et valide');
+            continue;
+        }
+
+         if (lettreDevinees.includes(lettre)) {
+            alert('Vous avez déjà trouvé cette lettre');
+            continue;
+        }
+        lettreDevinees.push(lettre);
+        
+         if (motADeviner.includes(lettre))  {
+            alert(`la lettre ${lettre} est bonne!`);            
+            motCache = motADeviner.split('').map(function(char) {
+                return lettreDevinees.includes(char) ? char : '-';
+            }).join('');
+            console.log(motCache);
+
+         }else {
+            alert(`Raté la lettre ${lettre} n'est pas dans le mot !`)
+            erreurAutorises --;
+         }
+
+        //  motAJour();
+
+         if (motCache === motADeviner) {
+            alert(`Félicitations vous avez réussi`);
+            return;
+         }
+
+         if (erreurAutorises === 0) {
+            alert(`Vous avez perdu ! \nLe mot était : ${motADeviner}`);
+            return;
+         }              
+     }
+ }
+
+ jouer();
+
