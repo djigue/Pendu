@@ -15,7 +15,10 @@ const choix = document.getElementById('choix');
 const changerMot = document.getElementById('changerBtn');
 const arret = document.getElementById('arretBtn');
 
-document.getElementById('motCache').innerText = motCache;       
+//affiche les tirets dans le pargraphe
+document.getElementById('motCache').innerText = motCache;  
+
+//lance le jeu quand on clique sur le bouton, empeche aussi le rechargement de la page
 document.getElementById('formulaire').addEventListener('submit', function (event) {
     event.preventDefault();
     jouer();
@@ -24,35 +27,41 @@ document.getElementById('formulaire').addEventListener('submit', function (event
 
 
 function jouer() {
-            
+           
+    //recupere la lettre en minuscule
     let lettre = document.getElementById('lettre').value.toLowerCase(); 
     document.getElementById('lettre').value = ''; 
 
+    //verifie que c'est bien une lettre
     if (!/[a-zA-Z]/.test(lettre)) {
         alert('Rentrez une lettre valide.');
         return;
     }
 
+    //verifie qu'on est pas déja essayé cette lettre
     if (lettreDevinees.includes(lettre)) {
         alert('Cette lettre a déjà été éssayée.');
          return;
     }
 
+    //ajoute la lettre au tableau
     lettreDevinees.push(lettre); 
-
-    let motCacheTemp = motCache; 
-            
+      
+    //verifie que la lettre est dans le mot
     if (motADeviner.includes(lettre)) {
                 
-        motCache = motADeviner.split('').map(function(char) {
-            return lettreDevinees.includes(char) ? char : '-';
+        motCache = motADeviner.split('').map(function(char) { //map permet d'ecrire une fonction pour chaque element du tableau
+            return lettreDevinees.includes(char) ? char : '-'; //regarde si les lettre du mot sont dans le tableau deviné, booleen renvoi la lettre ou le tiret
         }).join('');
+        
     } else {
                 
         erreurAutorises--; 
+        //change l'image
         document.getElementById('pendu').src = `Images/pendu${erreurAutorises}.png`; 
     }
 
+    // ecrit mot caché sur la page
     document.getElementById('motCache').innerText = motCache; 
 
     if (motCache === motADeviner) {
@@ -68,21 +77,33 @@ function jouer() {
 }
 
 function afficheModal (message) {
+
+    //met le texte dans le pargraphe modal
     choix.innerText = message;
+
+    //affiche la modal
     modal.style.display = 'block';
 }
 
 changerMot.addEventListener('click', function() {
+
+    partieJoues ++;
  
+    //enregistre les nombre de point
     pointsTableau.push(erreurAutorises);
+
+    //compte le score
     points += erreurAutorises;
+
+    //remise a zero des variables
     motADeviner = wordsArray[Math.floor(Math.random() * wordsArray.length)];
     motCache = '-'.repeat(motADeviner.length);
     erreurAutorises = 7;
-    lettreDevinees = [];
-    partieJoues ++;    
+    lettreDevinees = [];    
     document.getElementById('motCache').innerText = motCache;
     document.getElementById('pendu').src = `Images/pendu7.png`;
+
+    //cache la modal
     modal.style.display = 'none';
 });
 
@@ -91,9 +112,17 @@ arret.addEventListener('click', function() {
     partieJoues ++;
     points += erreurAutorises;
     pointsTableau.push(erreurAutorises);
+
+    //cache la modal
+    modal.style.display = 'none';
+
+    //affiche la nouvelle modal
+    fin.style.display = 'block';
+    
     let score = points / partieJoues;
-    let scoreArrondi = score.toFixed(1);   
-    let meilleurScore = Math.max(...pointsTableau);
-    let pireScore = Math.min(...pointsTableau);
-    alert(` Votre score est de : ${scoreArrondi} % \n Votre meilleure partie : ${meilleurScore} coups restants \n Vous avez perdu ${partiePerdues} parties `)
+    let scoreArrondi = score.toFixed(1); // arrondi au dixieme  
+    let meilleurScore = Math.max(...pointsTableau);//cherche le meilleur score dans le tableau
+
+    //met le texte dans le paragraphe nouvelle modale
+    afficheScore.innerText = ` Votre score est de : ${scoreArrondi} % \n Votre meilleure partie : ${meilleurScore} coups restants \n Vous avez perdu ${partiePerdues} parties `;
 })

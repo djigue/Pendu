@@ -10,7 +10,7 @@
 
     <h1>Jeu du Pendu</h1>
     
-    <p>Mot à deviner: <span id="motCache">-</span></p>
+    <p>Mot à deviner:  <p id="motCache"></p></p>
     <img id="pendu" src="Images/pendu7.png" alt="Pendu">
       
     <form id="formulaire">
@@ -19,10 +19,15 @@
     </form>
    
       <section id="modal" class="modal" style="display: none;">
-        <h2>JEU TERMINE</h2>
+        <h2>PARTIE TERMINEE</h2>
         <p id="choix"></p>
         <button id="changerBtn">Nouveau mot</button>
         <button id="arretBtn">Arrêter</button>
+      </section>
+
+      <section id="fin" style="display: none;">
+        <h2>FIN DU JEU</h2>
+        <P id="afficheScore"></P>
       </section>
        
     <script src="Script.js"></script>
