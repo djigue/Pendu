@@ -5,6 +5,10 @@ let motADeviner = wordsArray[Math.floor(Math.random() * wordsArray.length)];
 let motCache = '-'.repeat(motADeviner.length);
 let erreurAutorises = 7;
 let lettreDevinees = [];
+let partieJoues = 0;
+let partiePerdues = 0;
+let points = 0;
+let pointsTableau = [];
 
 const modal = document.getElementById('modal');
 const choix = document.getElementById('choix');
@@ -13,7 +17,7 @@ const arret = document.getElementById('arretBtn');
 
 document.getElementById('motCache').innerText = motCache;       
 document.getElementById('formulaire').addEventListener('submit', function (event) {
-    event.preventDefault(); 
+    event.preventDefault();
     jouer();
 });
 
@@ -52,11 +56,12 @@ function jouer() {
     document.getElementById('motCache').innerText = motCache; 
 
     if (motCache === motADeviner) {
-        afficheModal(`Félicitations, vous avez gagné ! \nIl vous restait ${erreurAutorises} chances.`);
+        afficheModal(` Félicitations, vous avez gagné ! \n Vous marquez ${erreurAutorises} points.`);
         return;
     }
            
     if (erreurAutorises === 0) {
+        partiePerdues ++;
         afficheModal(`Dommage, vous avez perdu ! \nLe mot était : ${motADeviner}`);
         return;
     }
@@ -68,12 +73,27 @@ function afficheModal (message) {
 }
 
 changerMot.addEventListener('click', function() {
-   
+ 
+    pointsTableau.push(erreurAutorises);
+    points += erreurAutorises;
     motADeviner = wordsArray[Math.floor(Math.random() * wordsArray.length)];
     motCache = '-'.repeat(motADeviner.length);
     erreurAutorises = 7;
     lettreDevinees = [];
+    partieJoues ++;    
     document.getElementById('motCache').innerText = motCache;
     document.getElementById('pendu').src = `Images/pendu7.png`;
     modal.style.display = 'none';
 });
+
+arret.addEventListener('click', function() {
+
+    partieJoues ++;
+    points += erreurAutorises;
+    pointsTableau.push(erreurAutorises);
+    let score = points / partieJoues;
+    let scoreArrondi = score.toFixed(1);   
+    let meilleurScore = Math.max(...pointsTableau);
+    let pireScore = Math.min(...pointsTableau);
+    alert(` Votre score est de : ${scoreArrondi} % \n Votre meilleure partie : ${meilleurScore} coups restants \n Vous avez perdu ${partiePerdues} parties `)
+})
