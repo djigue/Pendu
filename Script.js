@@ -7,21 +7,6 @@ let motCache ='-'.repeat(motADeviner.length);
 let erreurAutorises = 7;
 let lettreDevinees = [];
 
-
-
-// function motAJour () {
-//     let mot ='';
-//     for (let i = 0; i < motADeviner.length; i++) {
-//         if (lettre.includes(motADeviner[i])) {
-//             mot += motADeviner[i];
-//         }else {
-//             mot += "-";
-//         }
-//     }
-//     console.log(mot)
-// }
-
-
  function jouer () {
 
      while(erreurAutorises > 0 && motCache !== motADeviner) {
@@ -50,8 +35,6 @@ let lettreDevinees = [];
             alert(`Raté la lettre ${lettre} n'est pas dans le mot !`)
             erreurAutorises --;
          }
-
-        //  motAJour();
 
          if (motCache === motADeviner) {
             alert(`Félicitations vous avez réussi`);
