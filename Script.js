@@ -124,5 +124,5 @@ arret.addEventListener('click', function() {
     let meilleurScore = Math.max(...pointsTableau);//cherche le meilleur score dans le tableau
 
     //met le texte dans le paragraphe nouvelle modale
-    afficheScore.innerText = ` Votre score est de : ${scoreArrondi} % \n Votre meilleure partie : ${meilleurScore} coups restants \n Vous avez perdu ${partiePerdues} parties `;
+    afficheScore.innerText = ` Votre score est de : ${scoreArrondi} % \n Meilleure partie : ${meilleurScore} coups restants \n Vous avez perdu ${partiePerdues} parties `;
 })

@@ -11,7 +11,11 @@
 
     <h1 class="text-center mt-2" style="text-decoration: overline; text-decoration: underline; color: red;">Jeu du Pendu</h1>
     
-      <img id="pendu" src="Images/pendu7.png" alt="Pendu" style="background-color: transparent;">
+    <section class="container mt-5">
+     <section class="row">
+      <img id="pendu" src="Images/pendu7.png" alt="Pendu" class="col-2" style="background-color: transparent;">
+     </section>
+    </section>
 
     <section class="text-center d-flex flex-column justify-content-center align-items-center" style="margin-top: 120px;">
       <p class="fs-2" style="text-decoration: underline;">Mot à deviner:  <p id="motCache" class="fs-2 bg-secondary" style="width : 15%;"></p></p>
@@ -21,16 +25,16 @@
       </form>
     </section>
    
-      <section id="modal" class="modal" style="display: none;">
-        <h2>PARTIE TERMINEE</h2>
-        <p id="choix"></p>
+      <section id="modal" style="position: fixed; bottom: 150px; left: 50px; display: none;">
+        <h2 class="fs-2" style="text-decoration: underline;">PARTIE TERMINEE</h2>
+        <p id="choix" class="fs-3"></p>
         <button id="changerBtn">Nouveau mot</button>
         <button id="arretBtn">Arrêter</button>
       </section>
 
-      <section id="fin" style="display: none;">
-        <h2>FIN DU JEU</h2>
-        <P id="afficheScore"></P>
+      <section id="fin" style="position: fixed; bottom: 150px; display: none;">
+        <h2 class="fs-2 text-center" style="text-decoration: underline;">FIN DU JEU</h2>
+        <P id="afficheScore" class="fs-4"></P>
       </section>
        
     <script src="Script.js"></script>
