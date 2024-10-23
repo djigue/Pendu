@@ -4,19 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jeu du Pendu</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
 
-<body>
+<body class="container-fluid" style="background-image: url(Images/Echaffaud2.jpg); background-size: cover;">
 
-    <h1>Jeu du Pendu</h1>
+    <h1 class="text-center mt-2" style="text-decoration: overline; text-decoration: underline; color: red;">Jeu du Pendu</h1>
     
-    <p>Mot à deviner:  <p id="motCache"></p></p>
-    <img id="pendu" src="Images/pendu7.png" alt="Pendu">
-      
-    <form id="formulaire">
-        <input type="text" id="lettre" maxlength="1" required>
-        <button type="submit">Deviner</button>
-    </form>
+      <img id="pendu" src="Images/pendu7.png" alt="Pendu" style="background-color: transparent;">
+
+    <section class="text-center d-flex flex-column justify-content-center align-items-center" style="margin-top: 120px;">
+      <p class="fs-2" style="text-decoration: underline;">Mot à deviner:  <p id="motCache" class="fs-2 bg-secondary" style="width : 15%;"></p></p>
+      <form id="formulaire" class=" container d-flex flex-column justify-content-center align-items-center ">
+        <input type="text" id="lettre" maxlength="1" required class="bg-secondary">
+        <button type="submit" class="mt-2">Essayer</button>
+      </form>
+    </section>
    
       <section id="modal" class="modal" style="display: none;">
         <h2>PARTIE TERMINEE</h2>

@@ -71,7 +71,7 @@ function jouer() {
            
     if (erreurAutorises === 0) {
         partiePerdues ++;
-        afficheModal(`Dommage, vous avez perdu ! \nLe mot était : ${motADeviner}`);
+        afficheModal(` Dommage, vous avez perdu ! \n Le mot était : ${motADeviner}`);
         return;
     }
 }
